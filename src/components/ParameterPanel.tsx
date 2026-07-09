@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Sliders, Zap, Loader2 } from 'lucide-react';
+import type { ChangeEvent } from 'react';
 import { useBeat } from '@/context/BeatContext';
 import { Slider } from '@/components/ui/slider';
 import {
@@ -121,7 +122,7 @@ export default function ParameterPanel() {
         >
           Select the overall style and mood
         </p>
-        <Select value={params.genre} onValueChange={(v) => setGenre(v as Genre)}>
+        <Select value={params.genre} onValueChange={(v: string) => setGenre(v as Genre)}>
           <SelectTrigger
             style={{
               background: '#1A1A1A',
@@ -188,7 +189,7 @@ export default function ParameterPanel() {
           <div className="flex-1">
             <Slider
               value={[params.bpm]}
-              onValueChange={(v) => setBpm(v[0])}
+              onValueChange={(v: number[]) => setBpm(v[0])}
               min={20}
               max={300}
               step={1}
@@ -198,7 +199,7 @@ export default function ParameterPanel() {
           <Input
             type="number"
             value={params.bpm}
-            onChange={(e) => setBpm(Number(e.target.value))}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setBpm(Number(e.target.value))}
             min={20}
             max={300}
             style={{
@@ -260,7 +261,7 @@ export default function ParameterPanel() {
         </p>
         <div className="flex gap-3">
           <div style={{ width: '55%' }}>
-            <Select value={params.rootNote} onValueChange={(v) => setRootNote(v as RootNote)}>
+            <Select value={params.rootNote} onValueChange={(v: string) => setRootNote(v as RootNote)}>
               <SelectTrigger
                 style={{
                   background: '#1A1A1A',
@@ -294,7 +295,7 @@ export default function ParameterPanel() {
             </Select>
           </div>
           <div style={{ width: '40%' }}>
-            <Select value={params.scaleType} onValueChange={(v) => setScaleType(v as ScaleType)}>
+            <Select value={params.scaleType} onValueChange={(v: string) => setScaleType(v as ScaleType)}>
               <SelectTrigger
                 style={{
                   background: '#1A1A1A',
@@ -359,7 +360,7 @@ export default function ParameterPanel() {
         >
           Choose the rhythmic foundation
         </p>
-        <Select value={params.drumPattern} onValueChange={setDrumPattern}>
+        <Select value={params.drumPattern} onValueChange={(v: string) => setDrumPattern(v)}>
           <SelectTrigger
             style={{
               background: '#1A1A1A',
